@@ -5,12 +5,12 @@ import NumberFlow from "@number-flow/react";
 
 const TARGET_USD = 112500;
 
-function getYearProgress(): number {
-  const now = new Date();
-  const year = now.getFullYear();
-  const start = new Date(year, 0, 1).getTime();
-  const end = new Date(year + 1, 0, 1).getTime();
-  return (now.getTime() - start) / (end - start);
+const START = new Date(2025, 6, 2).getTime(); // July 2, 2025
+const END = new Date(2026, 6, 2).getTime();   // July 2, 2026
+
+function getProgress(): number {
+  const now = Date.now();
+  return Math.max(0, Math.min(1, (now - START) / (END - START)));
 }
 
 export default function Counter() {
@@ -27,7 +27,7 @@ export default function Counter() {
 
   useEffect(() => {
     const update = () => {
-      const usd = getYearProgress() * TARGET_USD;
+      const usd = getProgress() * TARGET_USD;
       setValue(currency === "INR" && rate ? usd * rate : usd);
     };
     update();
