@@ -42,8 +42,8 @@ export default function Counter() {
         format={{
           style: "currency",
           currency,
-          minimumFractionDigits: 4,
-          maximumFractionDigits: 4,
+          minimumFractionDigits: currency === "INR" ? 2 : 4,
+          maximumFractionDigits: currency === "INR" ? 2 : 4,
         }}
         locales={currency === "INR" ? "en-IN" : "en-US"}
         trend={1}
