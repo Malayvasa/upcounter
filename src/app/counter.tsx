@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import NumberFlow from "@number-flow/react";
 
-const TARGET_USD = 112500;
-
+const RATE_USD_PER_YEAR = 112500;
 const START = new Date(2025, 6, 2).getTime(); // July 2, 2025
-const END = new Date(2026, 6, 2).getTime();   // July 2, 2026
+const ONE_YEAR = 365.25 * 24 * 60 * 60 * 1000;
 
-function getProgress(): number {
-  const now = Date.now();
-  return Math.max(0, Math.min(1, (now - START) / (END - START)));
+function getEarned(): number {
+  const elapsed = Math.max(0, Date.now() - START);
+  return (elapsed / ONE_YEAR) * RATE_USD_PER_YEAR;
 }
 
 export default function Counter() {
@@ -27,7 +26,7 @@ export default function Counter() {
 
   useEffect(() => {
     const update = () => {
-      const usd = getProgress() * TARGET_USD;
+      const usd = getEarned();
       setValue(currency === "INR" && rate ? usd * rate : usd);
     };
     update();
