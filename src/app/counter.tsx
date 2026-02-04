@@ -14,7 +14,7 @@ function getEarned(): number {
 
 export default function Counter() {
   const [value, setValue] = useState(0);
-  const [currency, setCurrency] = useState<"USD" | "INR">("USD");
+  const [currency, setCurrency] = useState<"USD" | "INR">("INR");
   const [rate, setRate] = useState<number | null>(null);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function Counter() {
         trend={1}
         willChange
         style={{ fontVariantNumeric: "tabular-nums" }}
-        className="text-[clamp(2.5rem,10vw,10rem)] font-bold tracking-tight"
+        className="text-[clamp(3rem,14vw,14rem)] font-bold tracking-tight"
       />
       <div className="flex items-center gap-1 rounded-full bg-white/10 p-1 text-sm font-medium">
         <button
